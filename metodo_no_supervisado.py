@@ -22,11 +22,10 @@ scaler = StandardScaler()
 X_escalado = scaler.fit_transform(X)
 
 # Configurar y Entrenar K-Means
-
 kmeans = KMeans(n_clusters=3, random_state=42)
 df['categoria_cluster'] = kmeans.fit_predict(X_escalado)
 
-# Visualización con ETIQUETAS CORREGIDAS DINÁMICAMENTE
+# Visualización 
 plt.figure(figsize=(8, 6))
 
 # Mapeo de colores fijos para cada ID de cluster matemático
@@ -45,7 +44,7 @@ for cluster_id in range(3):
     else:
         etiqueta_real = 'Afluencia y Espera Media'
        
-    # Graficamos este grupo con su color asignado y su etiqueta corregida
+    # Grafica grupo con su color asignado
     plt.scatter(componente_cluster['afluencia_pasajeros'], 
                 componente_cluster['tiempo_espera_promedio'], 
                 c=colores_cluster[cluster_id], 
@@ -53,7 +52,7 @@ for cluster_id in range(3):
                 s=100, edgecolors='black')
 
 # Detalles estéticos de la gráfica
-plt.title('Segmentación No Supervisada de Estaciones de Transporte (Corregido)')
+plt.title('Segmentación No Supervisada de Estaciones de Transporte')
 plt.xlabel('Afluencia de Pasajeros (personas/min)')
 plt.ylabel('Tiempo de Espera Promedio (min)')
 plt.legend(loc='upper right')
